@@ -16,6 +16,8 @@ WORKDIR /var/LS30
 
 ENV PERLLIB $PERLLIB:/var/LS30/lib
 
+ENV LS30_SERVER=127.0.0.1:1681
+
 RUN cpanm Date::Format AnyEvent
 
 #RUN groupadd -r alarmuser && useradd -r -g alarmuser alarmuser
@@ -26,4 +28,4 @@ ENTRYPOINT ["bin/alarm-daemon.pl"]
 
 CMD ["-h", "192.168.1.30:23", "0.0.0.0:1681"]
 
-
+HEALTHCHECK CMD ./bin/dt.pl  | grep date/time || exit 1
