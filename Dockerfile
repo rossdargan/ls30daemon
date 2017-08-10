@@ -26,6 +26,6 @@ RUN cpanm Date::Format AnyEvent
 
 ENTRYPOINT ["bin/alarm-daemon.pl"]
 
-CMD ["-h", "192.168.1.30:23", "0.0.0.0:1681"]
+CMD ["-h", "192.168.86.30:23", "0.0.0.0:1681"]
 
 HEALTHCHECK CMD ./bin/dt.pl  | grep date/time || exit 1
